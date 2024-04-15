@@ -1,0 +1,327 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-color: #ffefd3;
+    --landing-text-color: #E8A17D;
+}
+
+.landing-page {
+    position: relative;
+    height: 100vh;
+    background-color: var(--bg-color);
+}
+
+.landing-page .landing-text {
+    font-family: Anton;
+    font-size: 13rem;
+    color: var(--landing-text-color);
+    position: absolute;
+    top: 5%;
+    left: 25%;
+    display: flex;
+    width: 20vw;
+    text-align: center;
+}
+
+.divider {
+    position: absolute;
+    height: 60vh;
+    top: 25%;
+    left: 50%;
+    border-left: 4px solid var(--landing-text-color);
+}
+
+.button {
+    margin-top: 2rem;
+    padding: 6px 10px 6px 10px;
+    background-color: var(--landing-text-color);
+    border: none;
+    border-radius: 5px;
+    font-family: Anton;
+    color: var(--bg-color);
+    font-size: 1.4rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.button:hover {
+    background-color: var(--bg-color);
+    color: var(--landing-text-color);
+    cursor: pointer;
+}
+
+::selection {
+    background-color: var(--landing-text-color);
+    color: var(--bg-color);
+}
+
+.airport-details-page {
+    font-family: Anton;
+    color: var(--landing-text-color);
+    position: relative;
+    height: 100vh;
+    background-color: var(--bg-color);
+}
+
+.airport-page-head  {
+    position: absolute;
+    font-size: 3.6rem;
+    /* border: 1px solid black; */
+    text-align: center;
+    top: 3%;
+    left: 39%;
+}
+
+.airport-details-page .airport-view-data {
+    position: absolute;
+    height: 70vh;
+    top: 20%;
+    left: 10%;
+    width: 30vw;
+    /* border: 2px solid blue; */
+}
+
+.airport-view-details-form {
+    font-size: 1.6rem;
+    margin-top: 1.6rem;
+    /* border: 1px solid black; */
+}
+
+.airport-view-button-container {
+    text-align: center;
+}
+
+.airport-view-details-form input[type="text"] {
+    border: none;
+    border-bottom: 2px solid var(--landing-text-color);
+    background-color: var(--bg-color);
+    box-sizing: border-box; 
+    font-family: Anton;
+    font-size: 1.4rem;
+    color: var(--landing-text-color);
+    padding: 5px 0; 
+    margin-bottom: 10px; 
+    margin-left: 1rem;
+    outline: none;
+}
+
+.airport-view-result {
+    margin-top: 2rem;
+    font-size: 1.8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    /* border: 1px solid black; */
+}
+
+.airport-details-page .airport-add-data {
+    position: absolute;
+    height: 70vh;
+    top: 20%;
+    left: 60%;
+    width: 30vw;
+    /* border: 2px solid blue; */
+}
+
+.airport-add-details-form {
+    font-size: 1.6rem;
+    margin-top: 1.6rem;
+    /* border: 1px solid black; */
+}
+
+.airport-add-button-container {
+    text-align: center;
+}
+
+.airport-add-details-form input[type="text"] {
+    border: none;
+    border-bottom: 2px solid var(--landing-text-color);
+    background-color: var(--bg-color);
+    box-sizing: border-box; 
+    font-family: Anton;
+    font-size: 1.4rem;
+    color: var(--landing-text-color);
+    padding: 5px 0; 
+    margin-bottom: 10px; 
+    margin-left: 1rem;
+    outline: none;
+}
+
+.airport-details-head {
+    font-size: 2.6rem;
+    /* border: 1px solid black; */
+    text-align: center;
+}
+
+.company-details-page {
+    font-family: Anton;
+    color: var(--landing-text-color);
+    position: relative;
+    height: 100vh;
+    background-color: var(--bg-color);
+}
+
+.company-page-head  {
+    position: absolute;
+    font-size: 3.6rem;
+    /* border: 1px solid black; */
+    text-align: center;
+    top: 3%;
+    left: 37%;
+}
+
+.company-details-page .company-view-data {
+    position: absolute;
+    height: 70vh;
+    top: 20%;
+    left: 10%;
+    width: 30vw;
+    /* border: 2px solid blue; */
+}
+
+.company-view-details-form {
+    font-size: 1.6rem;
+    margin-top: 1.6rem;
+    /* border: 1px solid black; */
+}
+
+.company-view-button-container {
+    text-align: center;
+}
+
+.company-view-details-form input[type="text"] {
+    border: none;
+    border-bottom: 2px solid var(--landing-text-color);
+    background-color: var(--bg-color);
+    box-sizing: border-box; 
+    font-family: Anton;
+    font-size: 1.4rem;
+    color: var(--landing-text-color);
+    padding: 5px 0; 
+    margin-bottom: 10px; 
+    margin-left: 1rem;
+    outline: none;
+}
+
+.company-view-result {
+    margin-top: 2rem;
+    font-size: 1.8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    /* border: 1px solid black; */
+}
+
+.company-details-page .company-add-data {
+    position: absolute;
+    height: 70vh;
+    top: 20%;
+    left: 60%;
+    width: 30vw;
+    /* border: 2px solid black; */
+}
+
+.company-add-details-form {
+    font-size: 1.6rem;
+    margin-top: 1.6rem;
+    /* border: 1px solid black; */
+}
+
+.company-add-button-container {
+    text-align: center;
+}
+
+.company-add-details-form input[type="text"] {
+    border: none;
+    border-bottom: 2px solid var(--landing-text-color);
+    background-color: var(--bg-color);
+    box-sizing: border-box; 
+    font-family: Anton;
+    font-size: 1.4rem;
+    color: var(--landing-text-color);
+    padding: 5px 0; 
+    margin-bottom: 10px; 
+    margin-left: 1rem;
+    outline: none;
+}
+
+.company-details-head {
+    font-size: 2.6rem;
+    /* border: 1px solid black; */
+    text-align: center;
+}
+
+.airport-specifics-page {
+    font-family: Anton;
+    color: var(--landing-text-color);
+    position: relative;
+    height: 100vh;
+    background-color: var(--bg-color);
+    /* border: 1px solid gray; */
+}
+
+
+.airport-specifics-head  {
+    position: absolute;
+    font-size: 3.6rem;
+    /* border: 1px solid black; */
+    text-align: center;
+    top: 3%;
+    left: 39%;
+}
+
+.airport-specifics-details-page .airport-specifics-view-data {
+    position: absolute;
+    height: 70vh;
+    top: 20%;
+    left: 10%;
+    width: 30vw;
+    /* border: 2px solid blue; */
+}
+
+.airport-specifics-view-details-form {
+    font-size: 1.6rem;
+    margin-top: 8rem;
+    margin-left: 3rem;
+    /* border: 1px solid black; */
+    position: relative;
+}
+
+.airport-specifics-view-button-container {
+    position: absolute;
+    left: 10%;
+}
+
+.airport-specifics-view-details-form input[type="text"] {
+    border: none;
+    border-bottom: 2px solid var(--landing-text-color);
+    background-color: var(--bg-color);
+    box-sizing: border-box; 
+    font-family: Anton;
+    font-size: 1.4rem;
+    color: var(--landing-text-color);
+    padding: 5px 0; 
+    margin-bottom: 10px; 
+    margin-left: 1rem;
+    outline: none;
+}
+
+.airport-specifics-view-result {
+    margin-top: 2rem;
+    font-size: 2.2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    /* border: 1px solid black; */
+    position: absolute;
+    left: 60%;
+    top: 15%;
+}
+
+
