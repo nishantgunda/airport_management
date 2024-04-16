@@ -122,7 +122,7 @@ app.get('/test/:iataCode', (req, res) => {
 app.get('/fares/:flight_id/:departure_datetime', (req, res) => {
     const flight_id = req.params.flight_id;
     const departure_datetime = req.params.departure_datetime;
-    const sql = 'CALL calculate_fare(?, ?)'; // Assuming leg_id is always 1
+    const sql = 'CALL calculate_fare(?, ?)'; 
     db.query(sql, [flight_id, departure_datetime], (err, result) => {
         console.log(result)
         if (err) {

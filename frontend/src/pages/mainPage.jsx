@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-// import SplineViewer from '@splinetool/viewer';
+import Spline from '@splinetool/react-spline';
 import './mainPage.css';
 
 function MainPage() {
@@ -35,10 +35,7 @@ function MainPage() {
                 for(var i=0;;i=i+1)
                 {
                     if (data[0] && data[0][i] && data[0][i].net) {
-                        const netFare = data[0][i].net;
-                        // Handle the net fare data as needed
-                        console.log('Net fare:', netFare);
-                        FareString+= `${data[0][i].fare_plan} :${data[0][i].net}<br>`;
+                        FareString+= `${data[0][i].fare_plan}: ${data[0][i].net}<br>`;
                         //console.log(airportResultString);
                         setAddFareResult(FareString);
                     }
@@ -83,9 +80,12 @@ function MainPage() {
         fetch(`http://localhost:8081/lego/${specificAirportIataCode}`)
             .then(response => response.json())
             .then(data => {
-                if (data && data[0].flight_id) {
+                if(data[0] === undefined) {
+                    airportResultString += `<br> No outgoing flights`;
+                }
+                else if (data && data[0].flight_id) {
                     airportResultString += `<br>Outgoing flights: ${data[0].flight_id}`;
-                    //console.log(airportResultString);
+                    console.log(airportResultString);
                     setAddSpecificAirportResult(airportResultString);
                 } else {
                     throw new Error('Data structure is not as expected');
@@ -95,10 +95,14 @@ function MainPage() {
         fetch(`http://localhost:8081/legi/${specificAirportIataCode}`)
             .then(response => response.json())
             .then(data => {
-                //console.log(data[0].flight_id);
-                if (data && data[0].flight_id) {
+                console.log(data);
+                console.log(data[0].flight_id);
+                if(data[0] === undefined) {
+                    airportResultString += `<br> No incoming flights`;
+                }
+                else if (data && data[0].flight_id) {
                     airportResultString += `<br>Incoming flights: ${data[0].flight_id}`;
-                    //console.log(airportResultString);
+                    console.log(airportResultString);
                     setAddSpecificAirportResult(airportResultString);
                 } else {
                     throw new Error('Data structure is not as expected');
@@ -182,10 +186,11 @@ function MainPage() {
   return (
     <div>
       <div className="landing-page">
+        <div className="spline-object">
+            <Spline scene = "https://prod.spline.design/lmNsbs8P1-Qk0E3z/scene.splinecode" />
+        </div>
         <div className="landing-text">AIRPORT MANAGER</div>
-        {/* <SplineViewer
-          url="https://prod.spline.design/lmNsbs8P1-Qk0E3z/scene.splinecode"
-  /> */}
+        <div className="landing-paragraph">A comprehensive airport management system</div>
       </div>
       <div className="airport-details-page">
         <div className="airport-page-head">Airport details</div>
