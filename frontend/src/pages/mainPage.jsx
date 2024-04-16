@@ -15,7 +15,43 @@ function MainPage() {
     const [addCompanyResult, setAddCompanyResult] = useState('');
     const [specificAirportIataCode, setSpecificAirportIataCode] = useState('');
     const [addSpecificAirportResult, setAddSpecificAirportResult] = useState('');
+    const [fareFlightId, setfareFlightId] = useState('');
+    const [faredeparture, setfaredeparture] = useState('');
+    const [addfareResult, setAddFareResult] = useState('');
     var airportResultString;
+    var FareString;
+    const handlefarecalc = () => {
+        fetch(`http://localhost:8081/fares/${fareFlightId}/${faredeparture}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+                // Assuming the response structure is similar to an array of fares
+                FareString='';
+                for(var i=0;;i=i+1)
+                {
+                    if (data[0] && data[0][i] && data[0][i].net) {
+                        const netFare = data[0][i].net;
+                        // Handle the net fare data as needed
+                        console.log('Net fare:', netFare);
+                        FareString+= `${data[0][i].fare_plan} :${data[0][i].net}<br>`;
+                        //console.log(airportResultString);
+                        setAddFareResult(FareString);
+                    }
+                    else if(data[0][i]==undefined)
+                        break;
+                     else {
+                        throw new Error('Data structure is not as expected');
+                    }
+            }
+            })
+            .catch(error => console.error('Error:', error));
+    };
+    
 
     const handleShowSpecificAirportDetails = () => {
         fetch(`http://localhost:8081/airport/${specificAirportIataCode}`)
@@ -23,18 +59,20 @@ function MainPage() {
             .then(data => {
                 if (data && data[0].IATA && data[0].City && data[0].Name) {
                     airportResultString = `IATA: ${data[0].IATA}<br> City: ${data[0].City}<br> Name: ${data[0].Name}`;
-                    console.log(airportResultString);
+                    //console.log(airportResultString);
                     setAddSpecificAirportResult(airportResultString);
                 } else {
                     throw new Error('Data structure is not as expected');
                 }
             })
             .catch(error => console.error('Error:', error));
-        fetch(`http://localhost:8081/runway/${specificAirportIataCode}`)
+        fetch(`http://localhost:8081/test/${specificAirportIataCode}`)
             .then(response => response.json())
             .then(data => {
-                if (data && data[0].count) {
-                    airportResultString += `<br>Number of runways: ${data[0].count}`;
+                console.log(data[0])
+                console.log(data)
+                if (data && data[0][0].num) {
+                    airportResultString += `<br>Number of runways: ${data[0][0].num}`;
                     console.log(airportResultString);
                     setAddSpecificAirportResult(airportResultString);
                 } else {
@@ -47,7 +85,7 @@ function MainPage() {
             .then(data => {
                 if (data && data[0].flight_id) {
                     airportResultString += `<br>Outgoing flights: ${data[0].flight_id}`;
-                    console.log(airportResultString);
+                    //console.log(airportResultString);
                     setAddSpecificAirportResult(airportResultString);
                 } else {
                     throw new Error('Data structure is not as expected');
@@ -57,10 +95,10 @@ function MainPage() {
         fetch(`http://localhost:8081/legi/${specificAirportIataCode}`)
             .then(response => response.json())
             .then(data => {
-                console.log(data[0].flight_id);
+                //console.log(data[0].flight_id);
                 if (data && data[0].flight_id) {
                     airportResultString += `<br>Incoming flights: ${data[0].flight_id}`;
-                    console.log(airportResultString);
+                    //console.log(airportResultString);
                     setAddSpecificAirportResult(airportResultString);
                 } else {
                     throw new Error('Data structure is not as expected');
@@ -251,6 +289,29 @@ function MainPage() {
             </div>
             {addSpecificAirportResult && (
                 <div className="airport-specifics-view-result" dangerouslySetInnerHTML={{ __html: addSpecificAirportResult }} />
+            )}
+            </div>
+        </div>
+        <div className="fare-page">
+        <div className="fare-head">Fare Calculations</div>
+        <div className="fare-view-data">
+          <div className="fare-details-head"></div>
+          <div className="fare-form">
+                <form>
+                    <label htmlFor="Flight Id">Flight Id: </label>
+                    <input type="text" name="Flight Id" id="flight_id1" value={fareFlightId} onChange={(e) => setfareFlightId(e.target.value)} />
+                    <br />
+                    <label htmlFor="Departure">Departure: </label>
+                    <input type="datetime" name="departure" id="departure1" value={faredeparture} onChange={(e) => setfaredeparture(e.target.value)} />
+                    <div className="fare-view-button-container">
+                        <button type="button" className="button" onClick={handlefarecalc}>
+                            Show fares
+                        </button>
+                    </div>
+                </form>
+            </div>
+            {addfareResult && (
+                <div className="fare-view-result" dangerouslySetInnerHTML={{ __html: addfareResult }} />
             )}
             </div>
         </div>
